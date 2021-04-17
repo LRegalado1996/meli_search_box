@@ -1,3 +1,4 @@
+import './App.scss';
 import { Router, Route, Switch } from "react-router-dom";
 import history from "./services/history";
 import { Home } from "./pages";
