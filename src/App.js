@@ -1,13 +1,13 @@
 import { Router, Route, Switch } from "react-router-dom";
 import history from "./services/history";
-import { Items } from "./pages";
+import { Home } from "./pages";
 
 function App() {
   return (
     <Router history={history}>
       <Switch>
-        <Route exact path="/items" component={ Items } />
-        <Route path="/" component={ Items } />
+        <Route exact path="/items" component={ Home } />
+        <Route path="/" component={ Home } />
       </Switch>
     </Router>
   );

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Items() {
+function Home() {
 
   return (
     <div className="Items">
@@ -9,4 +9,4 @@ function Items() {
   );
 };
 
-export { Items };
+export { Home };
