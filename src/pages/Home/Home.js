@@ -59,7 +59,9 @@ function Home() {
         onClickEventSearch = {() => getArticles(selected) }
       />
 
-      { renderArticles() }     
+      <div className="container_articles">
+        { renderArticles() }   
+      </div>  
 
     </div>
   );
