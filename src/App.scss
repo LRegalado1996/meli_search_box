@@ -1,4 +1,22 @@
+@import "./assets/css/colors.scss";
+
 * {
     margin: 0;
     padding: 0px;
 }
+
+body {
+    background-color: $grey;
+
+    input, button {
+        box-shadow: none;
+        border: none;
+        outline: none;
+        &:focus {
+            box-shadow: none;
+            border: none;
+            outline: none;
+        }
+    }
+}
+
