@@ -1,0 +1,12 @@
+@import "../../assets/css/colors.scss";
+
+.Header {
+  background-color: $yellow;
+  padding: 10px 10%;
+  height: 50px;
+    
+  .logo_mercadolibre {
+    height: 50px;
+    width: 15%;
+  }
+}

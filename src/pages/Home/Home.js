@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import './Home.scss';
-import logo from '../../assets/images/logo.svg';
+import { Header } from '../../components';
 
 function Home() {
+  const [selected, getSelected] = useState('');
 
   return (
     <div className="Home">
-      <header className="header_home">
-      <img src={logo} alt="Mercado Libre logo" />
-      </header>  
+      
+      <Header 
+        selectedSearch = { selected }
+        getSelectedSearch = { (selected) => getSelected(selected) }
+        onClickEventSearch = {() => console.log(selected) }
+      />
+
     </div>
   );
 };
