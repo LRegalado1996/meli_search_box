@@ -27,6 +27,7 @@ const SearchBox = ({
         type="submit"
         tabIndex={2}
         onClick={() => onClickEvent()}
+        disabled={!selected}
       >
         <img src={ search } alt="Search logo" />
       </button>
