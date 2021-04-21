@@ -1,18 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import './Home.scss';
 import { Header, Items, Article } from '../../components';
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 
 function Home() {
 
-  const itemFromUrl = useParams().itemId;
+  const itemFromUrl = useParams().itemId,
+    searchFromUrl = useQuery().get("search");
 
-  const [selected, getSelected] = useState(''),
+  const [selected, getSelected] = useState(),
     [item, getItem] = useState();
 
   useEffect(() => {
     getItem(itemFromUrl)
   }, [itemFromUrl] );
+
+  useEffect(() => {
+    getSelected(searchFromUrl)
+  }, [searchFromUrl] );
 
   const renderArticles = () => {
 
@@ -41,7 +46,6 @@ function Home() {
 
       <Header 
         selectedSearch = { selected }
-        onClickEventSearch = {(value) => getSelected(value)  }
       />
 
       <div className="container_articles">
@@ -53,3 +57,7 @@ function Home() {
 };
 
 export { Home };
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}

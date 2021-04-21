@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import './SearchBox.scss';
 import search from '../../assets/images/search.svg';
+import history from "../../services/history";
 
 const PLACEHOLDER_INPUT = "Nunca dejes de buscar";
 
 const SearchBox = ({
-  selected,
-  onClickEvent
+  selected
 }) => {
   const [inputValue, updateInputValue] = useState([selected]);
 
@@ -27,7 +27,7 @@ const SearchBox = ({
       <button 
         type="submit"
         tabIndex={2}
-        onClick={() => onClickEvent(inputValue)}
+        onClick={() => history.push({ pathname : '/items?search=' + inputValue }) }
         disabled={!inputValue}
       >
         <img src={ search } alt="Search logo" />

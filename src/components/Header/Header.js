@@ -11,8 +11,7 @@ const Header = ({
     <header className="Header">
       <img className="logo_mercadolibre" src={ logo } alt="Mercado Libre logo" />
       <SearchBox 
-        selected={selectedSearch} 
-        onClickEvent = {(selected) => onClickEventSearch(selected)}
+        selected={selectedSearch}
       />
   </header>
   );

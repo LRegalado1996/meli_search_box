@@ -8,6 +8,7 @@ function App() {
     <Router history={history}>
       <Switch>
         <Route exact path="/items/:itemId" component={ Home } />
+        <Route exact path="/items?search=" component={ Home } />
         <Route path="/" component={ Home } />
       </Switch>
     </Router>
