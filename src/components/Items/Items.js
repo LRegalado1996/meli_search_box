@@ -7,12 +7,13 @@ const Items = ({
 }) => {
 
   const renderArticle = (article) => {
-    const { thumbnail, title, price, address } = article;
+    const { thumbnail, title, price, address, id } = article;
     
     return (
       <div 
         className="item"
         onClick={() => onClikArticle(article)} 
+        key={id}
       >
 
         <div className="container image">
