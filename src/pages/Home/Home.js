@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import './Home.scss';
 import { Header, Items, Article } from '../../components';
 import { provider } from '../../services';
+import { useParams } from "react-router-dom";
 
 function Home() {
+
+  const itemFromUrl = useParams().itemId;
+
   const [selected, getSelected] = useState(''),
     [allArticles, getallArticles] = useState([]),
-    [item, getItem] = useState();
+    [item, getItem] = useState(itemFromUrl);
 
   const getArticles = async () => {
     try {
@@ -24,36 +28,6 @@ function Home() {
     }
   };
 
-  const getArticle = async (newItem) => {
-    if (!newItem) return ;
-    
-    try {
-      const getArticle = await provider.getArticle(newItem.id);
-
-      if (
-        getArticle && 
-        getArticle.status === 200 &&
-        getArticle.data
-      ) {
-
-        let article = getArticle.data;
-
-        const getArticleDescription = await provider.getArticleDescription(newItem.id);
-
-        if (
-          getArticleDescription && 
-          getArticleDescription.status === 200 &&
-          getArticleDescription.data && 
-          getArticleDescription.data.plain_text
-        ) article = { ...article, description : getArticleDescription.data.plain_text }
-
-        getItem(article);
-      }
-    } catch (e) {
-      handleToErrors(e)
-    }
-  };
-
   const handleToErrors = (error) => {
     const backendError = error.message ? error.message : "Error imprevisto";
     console.log(backendError)
@@ -63,7 +37,7 @@ function Home() {
 
     if (item) {
       return (
-        <Article article={ item }/>
+        <Article articleId={ item }/>
       )
 
     } else if ( allArticles.length !== 0 ) {
@@ -71,14 +45,14 @@ function Home() {
       return (
         <Items 
           articles = { allArticles }
-          onClikArticle = { (item) => getArticle(item) }
+          onClikArticle = { (item) => getItem(item.id) }
         /> 
       )
 
     }
 
   }
-
+  
   return (
     <div className="Home">
 
