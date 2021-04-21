@@ -10,7 +10,10 @@ const Items = ({
     const { thumbnail, title, price, address } = article;
     
     return (
-      <div className="item">
+      <div 
+        className="item"
+        onClick={() => onClikArticle(article)} 
+      >
 
         <div className="container image">
           <img src={ thumbnail } alt="Mercado Libre logo" />

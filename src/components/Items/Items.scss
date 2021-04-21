@@ -8,7 +8,8 @@
     height: 160px;
     margin-bottom: 1px;
     border-bottom: 1px solid $grey;
-
+    cursor: pointer;
+    
     .container {
       display: inline-block;
       float: left;
@@ -34,12 +35,12 @@
         width : calc(100% - 320px);
 
         .price {
-          font-size: 30px;
+          font-size: 23px;
           padding: 10px 0px 20px;
         }
 
         h3 {
-          font-size: 22px;
+          font-size: 16px;
           font-weight: 100;
         }
 
@@ -53,6 +54,11 @@
       &.address {
         width: 160px;
         margin: 30px auto;
+
+        p {
+          font-size: 16px;
+          text-align: right;
+        }
       }
     
     }
