@@ -4,8 +4,7 @@ import { SearchBox } from './../';
 import logo from '../../assets/images/logo.svg';
 
 const Header = ({
-  selectedSearch,
-  onClickEventSearch
+  selectedSearch
 }) => {
   return (
     <header className="Header">

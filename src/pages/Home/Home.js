@@ -8,7 +8,7 @@ function Home() {
   const itemFromUrl = useParams().itemId,
     searchFromUrl = useQuery().get("search");
 
-  const [selected, getSelected] = useState(),
+  const [selected, getSelected] = useState(''),
     [item, getItem] = useState();
 
   useEffect(() => {
@@ -16,7 +16,7 @@ function Home() {
   }, [itemFromUrl] );
 
   useEffect(() => {
-    getSelected(searchFromUrl)
+    if (searchFromUrl) getSelected(searchFromUrl)
   }, [searchFromUrl] );
 
   const renderArticles = () => {
