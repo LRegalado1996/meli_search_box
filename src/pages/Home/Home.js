@@ -25,19 +25,29 @@ function Home() {
   };
 
   const getArticle = async (newItem) => {
-    console.log(newItem)
     if (!newItem) return ;
     
     try {
-      const article = await provider.getArticle(newItem.id);
-      console.log(article);
+      const getArticle = await provider.getArticle(newItem.id);
 
       if (
-        article && 
-        article.status === 200 &&
-        article.data
+        getArticle && 
+        getArticle.status === 200 &&
+        getArticle.data
       ) {
-        getItem(article.data);
+
+        let article = getArticle.data;
+
+        const getArticleDescription = await provider.getArticleDescription(newItem.id);
+
+        if (
+          getArticleDescription && 
+          getArticleDescription.status === 200 &&
+          getArticleDescription.data && 
+          getArticleDescription.data.plain_text
+        ) article = { ...article, description : getArticleDescription.data.plain_text }
+
+        getItem(article);
       }
     } catch (e) {
       handleToErrors(e)
