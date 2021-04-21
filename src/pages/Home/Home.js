@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Home.scss';
 import { Header, Items, Article } from '../../components';
 import { provider } from '../../services';
@@ -10,7 +10,11 @@ function Home() {
 
   const [selected, getSelected] = useState(''),
     [allArticles, getallArticles] = useState([]),
-    [item, getItem] = useState(itemFromUrl);
+    [item, getItem] = useState();
+
+  useEffect(() => {
+    getItem(itemFromUrl)
+  }, [itemFromUrl] );
 
   const getArticles = async () => {
     try {
@@ -45,7 +49,6 @@ function Home() {
       return (
         <Items 
           articles = { allArticles }
-          onClikArticle = { (item) => getItem(item.id) }
         /> 
       )
 

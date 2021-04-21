@@ -1,9 +1,9 @@
 import React from 'react';
 import './Items.scss';
+import history from "../../services/history";
 
 const Items = ({
-  articles,
-  onClikArticle
+  articles
 }) => {
 
   const renderArticle = (article) => {
@@ -12,7 +12,7 @@ const Items = ({
     return (
       <div 
         className="item"
-        onClick={() => onClikArticle(article)} 
+        onClick={() => history.push({ pathname : '/items/' + id }) } 
         key={id}
       >
 
