@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Home.scss';
-import { Header, Items } from '../../components';
+import { Header, Items, Article } from '../../components';
 import { provider } from '../../services';
 
 function Home() {
@@ -24,6 +24,26 @@ function Home() {
     }
   };
 
+  const getArticle = async (newItem) => {
+    console.log(newItem)
+    if (!newItem) return ;
+    
+    try {
+      const article = await provider.getArticle(newItem.id);
+      console.log(article);
+
+      if (
+        article && 
+        article.status === 200 &&
+        article.data
+      ) {
+        getItem(article.data);
+      }
+    } catch (e) {
+      handleToErrors(e)
+    }
+  };
+
   const handleToErrors = (error) => {
     const backendError = error.message ? error.message : "Error imprevisto";
     console.log(backendError)
@@ -32,9 +52,9 @@ function Home() {
   const renderArticles = () => {
 
     if (item) {
-
+      console.log(item)
       return (
-        <h1>Item will be here</h1>
+        <Article article={ item }/>
       )
 
     } else if ( allArticles.length !== 0 ) {
@@ -42,7 +62,7 @@ function Home() {
       return (
         <Items 
           articles = { allArticles }
-          onClikArticle = { (item) => getItem(item) }
+          onClikArticle = { (item) => getArticle(item) }
         /> 
       )
 
