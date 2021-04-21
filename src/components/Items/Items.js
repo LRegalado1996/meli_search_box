@@ -1,10 +1,34 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Items.scss';
 import history from "../../services/history";
+import { provider } from '../../services';
 
 const Items = ({
-  articles
+  selectArticle
 }) => {
+
+  const [allArticles, getallArticles] = useState([]);
+
+  useEffect(() => {
+    async function getArticles(selected) {
+      try {
+        const articles = await provider.getArticles(selected);
+        if (
+          articles && 
+          articles.status === 200 &&
+          articles.data &&
+          articles.data.results
+        ) {
+          getallArticles(articles.data.results);
+        }
+      } catch (e) {
+        handleToErrors(e)
+      }
+    };
+    
+    getArticles(selectArticle)
+  }, [selectArticle]);
+
 
   const renderArticle = (article) => {
     const { thumbnail, title, price, address, id } = article;
@@ -40,8 +64,13 @@ const Items = ({
 
   return (
     <div className="Items">
-      { articles.map(article => renderArticle(article) ) }
+      { allArticles.map(article => renderArticle(article) ) }
     </div>
   );
 }
 export { Items };
+
+const handleToErrors = (error) => {
+  const backendError = error.message ? error.message : "Error imprevisto";
+  console.log(backendError)
+};

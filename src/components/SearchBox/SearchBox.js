@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './SearchBox.scss';
 import search from '../../assets/images/search.svg';
 
@@ -6,9 +6,10 @@ const PLACEHOLDER_INPUT = "Nunca dejes de buscar";
 
 const SearchBox = ({
   selected,
-  getSelected,
   onClickEvent
 }) => {
+  const [inputValue, updateInputValue] = useState([selected]);
+
   return (
     <div className={"SearchBox"}>
 
@@ -17,8 +18,8 @@ const SearchBox = ({
         id="searchItem" 
         name="searchItem"
         placeholder={PLACEHOLDER_INPUT}
-        value={selected}
-        onChange={(e) => getSelected(e.target.value)}
+        value={inputValue}
+        onChange={(e) => updateInputValue(e.target.value)}
         tabIndex={1}
         selected
       />
@@ -26,8 +27,8 @@ const SearchBox = ({
       <button 
         type="submit"
         tabIndex={2}
-        onClick={() => onClickEvent()}
-        disabled={!selected}
+        onClick={() => onClickEvent(inputValue)}
+        disabled={!inputValue}
       >
         <img src={ search } alt="Search logo" />
       </button>
