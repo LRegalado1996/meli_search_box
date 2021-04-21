@@ -62,7 +62,6 @@ function Home() {
   const renderArticles = () => {
 
     if (item) {
-      console.log(item)
       return (
         <Article article={ item }/>
       )
