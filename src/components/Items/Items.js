@@ -10,13 +10,6 @@ const Items = ({
 }) => {
 
   const [allArticles, getallArticles] = useState([]);
-
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(actions.setCategoryId('Hello'));
-  })
-  
-  
   useEffect(() => {
     async function getArticles(selected) {
       try {
@@ -37,6 +30,14 @@ const Items = ({
     getArticles(selectArticle)
   }, [selectArticle]);
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (
+      allArticles.length > 0 &&
+      allArticles[0].category_id
+    ) dispatch(actions.setCategoryId(allArticles[0].category_id));
+  })
+  
 
   const renderArticle = (article) => {
     const { thumbnail, title, price, address, id } = article;
