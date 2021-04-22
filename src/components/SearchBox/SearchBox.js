@@ -11,7 +11,7 @@ const SearchBox = ({
   const [inputValue, updateInputValue] = useState('');
 
   useEffect(() => {
-    if (selected) updateInputValue(selected)
+    updateInputValue(selected || '')
   }, [selected] );
 
   return (

@@ -16,7 +16,7 @@ function Home() {
   }, [itemFromUrl] );
 
   useEffect(() => {
-    if (searchFromUrl) getSelected(searchFromUrl)
+    getSelected(searchFromUrl)
   }, [searchFromUrl] );
 
   const renderArticles = () => {
