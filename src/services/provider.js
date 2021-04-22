@@ -29,6 +29,14 @@ class Provider {
 
     return axios.get(url)
   } 
+
+  getCategories(categoryId) {
+    const url = config.API_PATH + 
+      config.GET_CATEGORIES + 
+      categoryId;
+
+return axios.get(url)
+  }
 }
 
 const provider = new Provider();
