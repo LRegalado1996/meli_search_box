@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import './Items.scss';
 import history from "../../services/history";
 import { provider } from '../../services';
+import { useDispatch } from 'react-redux';
+import * as actions from '../../redux/actions';
 
 const Items = ({
   selectArticle
 }) => {
 
   const [allArticles, getallArticles] = useState([]);
-
   useEffect(() => {
     async function getArticles(selected) {
       try {
@@ -29,6 +30,14 @@ const Items = ({
     getArticles(selectArticle)
   }, [selectArticle]);
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (
+      allArticles.length > 0 &&
+      allArticles[0].category_id
+    ) dispatch(actions.setCategoryId(allArticles[0].category_id));
+  })
+  
 
   const renderArticle = (article) => {
     const { thumbnail, title, price, address, id } = article;

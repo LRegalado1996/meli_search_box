@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Home.scss';
-import { Header, Items, Article } from '../../components';
+import { Header, Items, Article, Breadcrumbs } from '../../components';
 import { useParams, useLocation } from "react-router-dom";
 
 function Home() {
@@ -47,6 +47,10 @@ function Home() {
       <Header 
         selectedSearch = { selected }
       />
+
+      <div className="container_breadcrumbs">
+        <Breadcrumbs />
+      </div>
 
       <div className="container_articles">
         { renderArticles() }   
