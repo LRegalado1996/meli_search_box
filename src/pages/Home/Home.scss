@@ -1,8 +1,8 @@
 @import "../../assets/css/colors.scss";
 
 .Home {
-  .container_articles {
+  .container_articles, .container_breadcrumbs {
     width: 80%;
-    margin: 0px auto;
+    margin: 10px auto;
   }
 }

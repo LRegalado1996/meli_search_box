@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Home.scss';
-import { Header, Items, Article } from '../../components';
+import { Header, Items, Article, Breadcrumbs } from '../../components';
 import { useParams, useLocation } from "react-router-dom";
 
 function Home() {
@@ -9,7 +9,8 @@ function Home() {
     searchFromUrl = useQuery().get("search");
 
   const [selected, getSelected] = useState(''),
-    [item, getItem] = useState();
+    [item, getItem] = useState(),
+    [categories, getCategories] = useState([]);
 
   useEffect(() => {
     getItem(itemFromUrl)
@@ -47,6 +48,10 @@ function Home() {
       <Header 
         selectedSearch = { selected }
       />
+
+      <div className="container_breadcrumbs">
+        <Breadcrumbs categories={categories} />
+      </div>
 
       <div className="container_articles">
         { renderArticles() }   
