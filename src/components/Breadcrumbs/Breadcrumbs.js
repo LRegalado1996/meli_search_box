@@ -79,7 +79,7 @@ const Breadcrumbs = () => {
                 >
                   { category.name }
                 </Link>
-                { '>' }
+                
               </li>
             ))
             
