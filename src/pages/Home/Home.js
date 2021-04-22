@@ -9,8 +9,7 @@ function Home() {
     searchFromUrl = useQuery().get("search");
 
   const [selected, getSelected] = useState(''),
-    [item, getItem] = useState(),
-    [categories, getCategories] = useState([]);
+    [item, getItem] = useState();
 
   useEffect(() => {
     getItem(itemFromUrl)
@@ -50,7 +49,7 @@ function Home() {
       />
 
       <div className="container_breadcrumbs">
-        <Breadcrumbs categories={categories} />
+        <Breadcrumbs />
       </div>
 
       <div className="container_articles">

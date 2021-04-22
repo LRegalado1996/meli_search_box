@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './Items.scss';
 import history from "../../services/history";
 import { provider } from '../../services';
+import { useDispatch } from 'react-redux';
+import * as actions from '../../redux/actions';
 
 const Items = ({
   selectArticle
@@ -9,6 +11,12 @@ const Items = ({
 
   const [allArticles, getallArticles] = useState([]);
 
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(actions.setCategoryId('Hello'));
+  })
+  
+  
   useEffect(() => {
     async function getArticles(selected) {
       try {
