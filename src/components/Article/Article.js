@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './Article.scss';
 import { provider } from '../../services';
+import { useDispatch } from 'react-redux';
+import * as actions from '../../redux/actions';
 
 const Article = ({ articleId }) => {
 
   const [article, updateArticle] = useState();
-
   useEffect(() => {
     async function getArticle(newItem) {
     
@@ -40,6 +41,11 @@ const Article = ({ articleId }) => {
 
     getArticle(articleId)
   }, [articleId]);
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if ( article && article.category_id ) dispatch(actions.setCategoryId(article.category_id));
+  });
 
   if (!article) return (<div>Cargando...</div>)
 
